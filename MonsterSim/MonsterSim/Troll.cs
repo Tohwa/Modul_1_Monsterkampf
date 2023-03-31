@@ -13,7 +13,6 @@ namespace MonsterSim
         public static float ap; //attackpower
         public static float dp; //defense
         public static float s;  //speed
-        public static float result;
 
         public static void choiceTroll()       // Troll stat input + check to see if the input is a valid number
         {
@@ -76,27 +75,71 @@ namespace MonsterSim
                 }
             }
         }
-
-        public static float attack(float choice2)
+               
+        public static void Attack()
         {
+            int i;
+            int j;
+
             switch (Program.choice2)
             {
-                case 1:
-                    result = ap - Orc.dp;
-                    if (result < 0)
+                case 1:     // Troll vs Orc works as long as the troll has more ap than the orc dp
+                    if (Compare.speed(Troll.s, Orc.s) == true)
                     {
-                        result = 0;
+                        Console.WriteLine("The Troll's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.TrollVsOrc();
+                            i++;
+                            j--;
+                        }
+                        while (Troll.hp > 0 && Orc.hp > 0 && j != 0);
+                        Results.OVTWinner(i, j);
+                    }
+                    else
+                    {
+                        Console.WriteLine("The Orc's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.OrcVsTroll();
+                            i++;
+                            j--;
+                        }
+                        while (Troll.hp > 0 && Orc.hp > 0 && j != 0);
+                        Results.OVTWinner(i, j);
                     }
                     break;
-                case 3:
-                    result = ap - Goblin.dp;
-                    if (result < 0)
+                case 3:     //Troll vs Goblin works without issue
+                    if (Compare.speed(Troll.s, Goblin.s) == true)
                     {
-                        result = 0;
+                        Console.WriteLine("The Troll's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.TrollVsGoblin();
+                            i++;
+                            j--;
+                        }
+                        while (Troll.hp > 0 && Goblin.hp > 0 && j != 0);
+                        Results.TVGWinner(i, j);
+                    }
+                    else
+                    {
+                        Console.WriteLine("The Goblin's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.GoblinVsTroll();
+                            i++;
+                            j--;
+                            Console.WriteLine("After the {0}. round the Troll has {1}hp left.", i, Troll.hp);
+                            Console.WriteLine("Meanwhile the Goblin has {0}hp left.", Goblin.hp);
+                            Console.WriteLine(Combat.result);
+                            Console.WriteLine(Combat.result);
+                        }
+                        while (Troll.hp > 0 && Goblin.hp > 0 && j != 0);
+                        Results.TVGWinner(i, j);
                     }
                     break;
             }
-            return result;
         }
     }
 }

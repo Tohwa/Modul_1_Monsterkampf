@@ -79,28 +79,83 @@ namespace MonsterSim
             return;
 
         }
-
-
-        public static float attack(float choice2)
+    
+        public static void Attack()
         {
+            int i;
+            int j;
+
             switch (Program.choice2)
             {
-                case 1:
-                    result = ap - Orc.dp;
-                    if (result < 0)
+                case 1:     // Combat is not initialized no clue why
+                    if (Compare.speed(Goblin.s, Orc.s) == true)
                     {
-                        result = 0;
+                        Console.WriteLine("The Goblin's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.GoblinVsOrc();
+                            i++;
+                            j--;
+                            Console.WriteLine("After the {0}. round the Orc has {1}hp left.", i, Orc.hp);
+                            Console.WriteLine("Meanwhile the Goblin has {0}hp left.", Goblin.hp);
+                            // Console.WriteLine(Goblin.result);
+                            // Console.WriteLine(Orc.result);
+                        }
+                        while (Goblin.hp > 0 && Orc.hp > 0 && j != 0);
+                        Results.OVGWinner(i, j);
+                    }
+                    else
+                    {
+                        Console.WriteLine("The Orc's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.OrcVsGoblin();
+                            i++;
+                            j--;
+                            Console.WriteLine("After the {0}. round the Goblin has {1}hp left.", i, Goblin.hp);
+                            Console.WriteLine("Meanwhile the Orc has {0}hp left.", Orc.hp);
+                            // Console.WriteLine(Goblin.result);
+                            // Console.WriteLine(Orc.result);
+                        }
+                        while (Goblin.hp > 0 && Orc.hp > 0 && j != 0);
+                        Results.OVGWinner(i, j);
                     }
                     break;
                 case 2:
-                    result = ap - Troll.dp;
-                    if (result < 0)
+                    if (Compare.speed(Goblin.s, Troll.s) == true)
                     {
-                        result = 0;
+                        Console.WriteLine("The Goblin's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.GoblinVsTroll();
+                            i++;
+                            j--;
+                            Console.WriteLine("After the {0}. round the Troll has {1}hp left.", i, Troll.hp);
+                            Console.WriteLine("Meanwhile the Goblin has {0}hp left.", Goblin.hp);
+                            Console.WriteLine(Goblin.result);
+                            Console.WriteLine(Troll.result);
+                        }
+                        while (Goblin.hp > 0 && Troll.hp > 0 && j != 0);
+                        Results.TVGWinner(i, j);
                     }
-                    break;                   
+                    else
+                    {
+                        Console.WriteLine("The Troll's speed is greater it will have the first móve.");
+                        do
+                        {
+                            Combat.TrollVsGoblin();
+                            i++;
+                            j--;
+                            Console.WriteLine("After the {0}. round the Troll has {1}hp left.", i, Troll.hp);
+                            Console.WriteLine("Meanwhile the Goblin has {0}hp left.", Goblin.hp);
+                            Console.WriteLine(Goblin.result);
+                            Console.WriteLine(Troll.result);
+                        }
+                        while (Goblin.hp > 0 && Troll.hp > 0 && j != 0);
+                        Results.TVGWinner(i, j);
+                    }
+                    break;
             }
-            return result;
         }
     }
 }
