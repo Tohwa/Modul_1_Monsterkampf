@@ -77,8 +77,8 @@ namespace MonsterSim
         
         public static void Attack()
         {
-            int i;
-            int j;
+            int i = 0;
+            int j = 100;
 
             switch (Program.choice2)
             {
@@ -91,10 +91,10 @@ namespace MonsterSim
                             Combat.OrcVsTroll();
                             i++;
                             j--;
-                            Console.WriteLine("After the {0}. round the Orc has {1}hp left.", i, Troll.hp);
-                            Console.WriteLine(Combat.result);
-                            Console.WriteLine("Meanwhile the Troll has {0}hp left.", Goblin.hp);
-                            Console.WriteLine(Combat.result);
+                            Console.WriteLine(Combat.Damage(Orc.ap, Troll.dp));
+                            Console.WriteLine("After the {0}. round the Troll has {1}hp left.", i, Troll.hp);
+                            Console.WriteLine(Combat.Damage(Troll.ap, Orc.dp));
+                            Console.WriteLine("Meanwhile the Orc has {0}hp left.", Orc.hp);                            
                         }
                         while (Orc.hp > 0 && Troll.hp > 0 && j != 0);
                         Results.OVTWinner(i, j);
@@ -107,10 +107,10 @@ namespace MonsterSim
                             Combat.TrollVsOrc();
                             i++;
                             j--;
-                            Console.WriteLine("After the {0}. round the Troll has {1}hp left.", i, Troll.hp);
-                            Console.WriteLine(Combat.result);
-                            Console.WriteLine("Meanwhile the Goblin has {0}hp left.", Orc.hp);
-                            Console.WriteLine(Combat.result);
+                            Console.WriteLine(Combat.Damage(Troll.ap, Orc.dp));
+                            Console.WriteLine("After the {0}. round the Orc has {1}hp left.", i, Orc.hp);
+                            Console.WriteLine(Combat.Damage(Orc.ap, Troll.dp));
+                            Console.WriteLine("Meanwhile the Troll has {0}hp left.", Troll.hp);
                         }
                         while (Orc.hp > 0 && Troll.hp > 0 && j != 0);
                         Results.OVTWinner(i, j);
@@ -125,6 +125,10 @@ namespace MonsterSim
                             Combat.OrcVsGoblin();
                             i++;
                             j--;
+                            Console.WriteLine(Combat.Damage(Orc.ap, Goblin.dp));
+                            Console.WriteLine("After the {0}. round the Goblin has {1}hp left.", i, Goblin.hp);
+                            Console.WriteLine(Combat.Damage(Goblin.ap, Orc.dp));
+                            Console.WriteLine("Meanwhile the Orc has {0}hp left.", Orc.hp);
                         }
                         while (Orc.hp > 0 && Goblin.hp > 0 && j != 0);
                         Results.OVGWinner(i, j);
@@ -137,6 +141,10 @@ namespace MonsterSim
                             Combat.GoblinVsOrc();
                             i++;
                             j--;
+                            Console.WriteLine(Combat.Damage(Goblin.ap, Orc.dp));
+                            Console.WriteLine("After the {0}. round the Orc has {1}hp left.", i, Orc.hp);
+                            Console.WriteLine(Combat.Damage(Orc.ap, Goblin.dp));
+                            Console.WriteLine("Meanwhile the Goblin has {0}hp left.", Goblin.hp);
                         }
                         while (Orc.hp > 0 && Goblin.hp > 0 && j != 0);
                         Results.OVGWinner(i, j);

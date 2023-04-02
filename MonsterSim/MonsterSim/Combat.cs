@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,36 +14,24 @@ namespace MonsterSim
         public static float currentHealthTroll;
         public static float result;
 
-        public static float Damage(float ap, float dp, float choice2)
+        public static float Damage(float ap, float dp)
         {
-            switch (Program.choice2)
-            {
-                case 1:
                     result = ap - dp;
                     if (result < 0)
                     {
                         result = 0;
                     }
-                    break;
-                case 3:
-                    result = ap - dp;
-                    if (result < 0)
-                    {
-                        result = 0;
-                    }
-                    break;
-            }
-            return result;
+                    return result;               
         }
 
         public static void OrcVsTroll()
         {
-            float dmg1 = Damage(Orc.ap, Troll.dp, Program.choice2);
+            float dmg1 = Damage(Orc.ap, Troll.dp);
             currentHealthTroll = Troll.hp - dmg1;
             Troll.hp = currentHealthTroll;
             if (Troll.hp > 0)
             {
-                float dmg2 = Damage(Troll.ap, Orc.dp, Program.choice2);
+                float dmg2 = Damage(Troll.ap, Orc.dp);
                 currentHealthOrc = Orc.hp - dmg2;
                 Orc.hp = currentHealthOrc;
             }
@@ -50,12 +39,12 @@ namespace MonsterSim
 
         public static void OrcVsGoblin()
         {            
-            float dmg1 = Damage(Orc.ap, Goblin.dp, Program.choice2);
+            float dmg1 = Damage(Orc.ap, Goblin.dp);
             currentHealthGoblin = Goblin.hp - dmg1;
             Goblin.hp = currentHealthGoblin;
             if (Goblin.hp > 0)
             {
-                float dmg2 = Damage(Goblin.ap, Orc.dp, Program.choice2);
+                float dmg2 = Damage(Goblin.ap, Orc.dp);
                 currentHealthOrc = Orc.hp - dmg2;
                 Orc.hp = currentHealthOrc;
             }
@@ -63,12 +52,12 @@ namespace MonsterSim
 
         public static void TrollVsGoblin()
         {
-            float dmg1 = Damage(Troll.ap, Goblin.dp, Program.choice2);
+            float dmg1 = Damage(Troll.ap, Goblin.dp);
             currentHealthGoblin = Goblin.hp - dmg1;
             Goblin.hp = currentHealthGoblin;
             if (Goblin.hp > 0)
             {
-                float dmg2 = Damage(Goblin.ap, Troll.dp, Program.choice2);
+                float dmg2 = Damage(Goblin.ap, Troll.dp);
                 currentHealthTroll = Troll.hp - dmg2;
                 Troll.hp = currentHealthTroll;
             }
@@ -76,12 +65,12 @@ namespace MonsterSim
 
         public static void TrollVsOrc()
         {
-            float dmg1 = Damage(Troll.ap, Orc.dp, Program.choice2);
+            float dmg1 = Damage(Troll.ap, Orc.dp);
             currentHealthOrc = Orc.hp - dmg1;
             Orc.hp = currentHealthOrc;
             if (Orc.hp > 0)
             {
-                float dmg2 = Damage(Orc.ap, Troll.dp, Program.choice2);
+                float dmg2 = Damage(Orc.ap, Troll.dp);
                 currentHealthTroll = Troll.hp - dmg2;
                 Troll.hp = currentHealthTroll;
             }
@@ -89,12 +78,12 @@ namespace MonsterSim
 
         public static void GoblinVsOrc()
         {
-            float dmg1 = Damage(Goblin.ap, Orc.dp, Program.choice2);
+            float dmg1 = Damage(Goblin.ap, Orc.dp);
             currentHealthOrc = Orc.hp - dmg1;
             Orc.hp = currentHealthOrc;
             if (Orc.hp > 0)
             {
-                float dmg2 = Damage(Orc.ap, Goblin.dp, Program.choice2);
+                float dmg2 = Damage(Orc.ap, Goblin.dp);
                 currentHealthGoblin = Goblin.hp - dmg2;
                 Goblin.hp = currentHealthGoblin;
             }
@@ -102,12 +91,12 @@ namespace MonsterSim
 
         public static void GoblinVsTroll()
         {
-            float dmg1 = Damage(Goblin.ap, Troll.dp, Program.choice2);
+            float dmg1 = Damage(Goblin.ap, Troll.dp);
             currentHealthTroll = Troll.hp - dmg1;
             Troll.hp = currentHealthTroll;
             if (Troll.hp > 0)
             {
-                float dmg2 = Damage(Troll.ap, Goblin.dp, Program.choice2);
+                float dmg2 = Damage(Troll.ap, Goblin.dp);
                 currentHealthGoblin = Goblin.hp - dmg2;
                 Goblin.hp = currentHealthGoblin;
             }
